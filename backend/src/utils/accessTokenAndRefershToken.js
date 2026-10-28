@@ -35,10 +35,11 @@ const generateToken = async (user, res, req) => {
 
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
-    secure: envConfig.NODE_ENV == "production",
+    secure: envConfig.NODE_ENV === "production",
     sameSite: "strict",
     maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+    path: "/"
+});
 
   return accessToken;
 };
